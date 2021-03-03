@@ -4,7 +4,7 @@ on:
   push:
     branches: [ dev, master ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev, master ]
 
 jobs:
 
@@ -51,6 +51,8 @@ jobs:
 
       run: ./functional-test.sh > function-tests_outputs
 
+
+    - name: Upload coverage artifact
       uses: actions/upload-artifact@v2
       with:
         name: function-tests_outputs
