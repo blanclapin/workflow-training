@@ -7,7 +7,6 @@ on:
     branches: [ dev, master ]
 
 jobs:
-
   hello-world:
     runs-on: ubuntu-20.04
     steps:
@@ -20,18 +19,14 @@ jobs:
       image: epitechcontent/epitest-docker
     steps:
     - uses: actions/checkout@v2
-
     - name: Run make
       run: make
-
     - name: Make tests run
       continue-on-error: true
       run: make tests_run > coverage_outputs
-
     - name: Compute coverage
       continue-on-error: true
       run: make coverage >> coverage_outputs
-
     - name: Upload coverage output
       continue-on-error: true
       uses: actions/upload-artifact@v2
@@ -45,7 +40,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Functional test
         run: make && ./functional-test.sh > function-tests_outputs
-
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v2
         with:
