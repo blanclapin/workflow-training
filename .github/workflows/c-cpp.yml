@@ -48,18 +48,16 @@ jobs:
         path: coverage_outputs
 
 
-    - name: Functional test
-      uses: actions/checkout@v2
 
-      run: ./functional-test.sh > function-tests_outputs
+  functional-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Functional test
+        run: make && ./functional-test.sh > function-tests_outputs
 
-
-    - name: Upload coverage artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: function-tests_outputs
-        path: function-tests_outputs
-
-
-    - name: fclean
-      run: make fclean
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: function-tests_outputs
+          path: function-tests_outputs
