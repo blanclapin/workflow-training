@@ -1,16 +1,12 @@
 name: Tests
 
-
 on:
   push:
     branches: [ dev, master ]
   pull_request:
     branches: [ dev, master ]
 
-
 jobs:
-
-
 
   hello-world:
     runs-on: ubuntu-20.04
@@ -18,27 +14,23 @@ jobs:
     - name: Say hello world
       run: echo "Welcome to the Github Actions workshop !"
 
-
-
   unit-test:
     runs-on: ubuntu-20.04
     container:
       image: epitechcontent/epitest-docker
     steps:
     - uses: actions/checkout@v2
+
     - name: Run make
       run: make
-
 
     - name: Make tests run
       continue-on-error: true
       run: make tests_run > coverage_outputs
 
-
     - name: Compute coverage
       continue-on-error: true
       run: make coverage >> coverage_outputs
-
 
     - name: Upload coverage output
       continue-on-error: true
@@ -46,8 +38,6 @@ jobs:
       with:
         name: coverage_outputs
         path: coverage_outputs
-
-
 
   functional-tests:
     runs-on: ubuntu-20.04
