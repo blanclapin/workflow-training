@@ -10,11 +10,10 @@ jobs:
   hello-world:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
     - name: Say hello world
       run: echo "Welcome to the Github Actions workshop !"
-  test:
-    runs-on: ubuntu-latest
+  unit-test:
+    runs-on: ubuntu-20.04
     container:
       image: epitechcontent/epitest-docker
     steps:
@@ -23,3 +22,7 @@ jobs:
       run: make
     - name: makeTests
       run: make tests_run
+    - name: coverage
+      run: echo "todo"
+    - name: fclean
+      run: make fclean
