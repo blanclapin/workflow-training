@@ -1,12 +1,18 @@
-name: C/C++ CI
+name: Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev, master ]
   pull_request:
     branches: [ master ]
 
 jobs:
+  hello-world:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Say hello world
+      run: echo "Welcome to the Github Actions workshop !"
   test:
     runs-on: ubuntu-latest
     container:
