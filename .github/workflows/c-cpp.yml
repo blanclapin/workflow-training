@@ -23,6 +23,6 @@ jobs:
     - name: makeTests
       run: make tests_run
     - name: coverage
-      run: echo "todo"
+      run: make coverage
     - name: fclean
       run: make fclean
