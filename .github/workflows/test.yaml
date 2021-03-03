@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Functional test
         run: make && ./functional-test.sh > function-tests_outputs
-      - name: Upload coverage artifact
+      - name: Upload function tests artifact
         uses: actions/upload-artifact@v2
         with:
           name: function-tests_outputs
