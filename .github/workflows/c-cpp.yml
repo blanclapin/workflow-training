@@ -7,11 +7,17 @@ on:
     branches: [ master ]
 
 jobs:
+
+
+
   hello-world:
     runs-on: ubuntu-20.04
     steps:
     - name: Say hello world
       run: echo "Welcome to the Github Actions workshop !"
+
+
+
   unit-test:
     runs-on: ubuntu-20.04
     container:
@@ -21,20 +27,34 @@ jobs:
     - name: Run make
       run: make
 
+
     - name: Make tests run
       continue-on-error: true
       run: make tests_run > coverage_outputs
 
+
     - name: Compute coverage
       continue-on-error: true
       run: make coverage >> coverage_outputs
-    
+
+
     - name: Upload coverage output
       continue-on-error: true
       uses: actions/upload-artifact@v2
       with:
         name: coverage_outputs
         path: coverage_outputs
+
+
+    - name: Functional test
+      uses: actions/checkout@v2
+
+      run: ./functional-test.sh > function-tests_outputs
+
+      uses: actions/upload-artifact@v2
+      with:
+        name: function-tests_outputs
+        path: function-tests_outputs
 
     - name: fclean
       run: make fclean
