@@ -7,15 +7,13 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
+    container:
+      image: epitechcontent/epitest-docker
     steps:
     - uses: actions/checkout@v2
     - name: make
       run: make
-    - name: InstallCriterion
-      run: sudo add-apt-repository ppa:snaipewastaken/ppa && sudo apt-get update && sudo apt-get install criterion-dev
     - name: makeTests
       run: make tests_run
