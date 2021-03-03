@@ -18,11 +18,23 @@ jobs:
       image: epitechcontent/epitest-docker
     steps:
     - uses: actions/checkout@v2
-    - name: make
+    - name: Run make
       run: make
-    - name: makeTests
-      run: make tests_run
-    - name: coverage
-      run: make coverage
+
+    - name: Make tests run
+      continue-on-error: true
+      run: make tests_run > coverage_outputs
+
+    - name: Compute coverage
+      continue-on-error: true
+      run: make coverage >> coverage_outputs
+    
+    - name: Upload coverage output
+      continue-on-error: true
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage_outputs
+        path: coverage_outputs
+
     - name: fclean
       run: make fclean
